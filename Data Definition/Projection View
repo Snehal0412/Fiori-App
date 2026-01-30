@@ -1,0 +1,63 @@
+@Metadata.allowExtensions: true
+@Metadata.ignorePropagatedAnnotations: true
+@EndUserText: {
+  label: '###GENERATED Core Data Service Entity'
+}
+@ObjectModel: {
+  sapObjectNodeType.name: 'ZORDER_04'
+}
+@AccessControl.authorizationCheck: #MANDATORY
+define root view entity ZC_ZORDER_04
+  provider contract transactional_query
+  as projection on ZR_ZORDER_04
+  association [1..1] to ZR_ZORDER_04 as _BaseEntity on $projection.UUID = _BaseEntity.UUID and $projection.Ordno = _BaseEntity.Ordno
+{
+  key UUID,
+  key Ordno,
+  Ordesc,
+  @Consumption:{
+       valueHelpDefinition:
+       [{
+         entity.element:'Payty',
+         entity.name: 'ZZPAYMTY_04',
+         useForValidation: true
+         }]
+       }
+  Payty,
+  @Semantics: {
+    amount.currencyCode: 'Currency'
+  }
+  Ordamt,
+  @Consumption: {
+    valueHelpDefinition: [ {
+      entity.element: 'Currency', 
+      entity.name: 'I_CurrencyStdVH', 
+      useForValidation: true
+    } ]
+  }
+  Currency,
+  Name,
+  Address,
+  Email,
+  @Semantics: {
+    user.createdBy: true
+  }
+  LocalCreatedBy,
+  @Semantics: {
+    systemDateTime.createdAt: true
+  }
+  LocalCreatedAt,
+  @Semantics: {
+    user.localInstanceLastChangedBy: true
+  }
+  LocalLastChangedBy,
+  @Semantics: {
+    systemDateTime.localInstanceLastChangedAt: true
+  }
+  LocalLastChangedAt,
+  @Semantics: {
+    systemDateTime.lastChangedAt: true
+  }
+  LastChangedAt,
+  _BaseEntity
+}
