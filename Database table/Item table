@@ -1,0 +1,16 @@
+@EndUserText.label : 'Sales Item Data'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zzitem_04 {
+
+  key client : abap.clnt not null;
+  key ordno  : zzordno_04 not null;
+  key itno   : zzitno_04 not null;
+  itdesc     : zzitdesc_04;
+  @Semantics.quantity.unitOfMeasure : 'zzitem_04.unit'
+  itqty      : zzitqty_04;
+  unit       : zzunit_04;
+
+}
