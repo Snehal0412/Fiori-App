@@ -1,0 +1,33 @@
+@AccessControl.authorizationCheck: #MANDATORY
+@Metadata.allowExtensions: true
+@ObjectModel.sapObjectNodeType.name: 'ZORDER_04'
+@EndUserText.label: '###GENERATED Core Data Service Entity'
+define root view entity ZR_ZORDER_04
+  as select from ZZORDER_04
+{
+  key uuid as UUID,
+  key ordno as Ordno,
+  ordesc as Ordesc,
+  payty as Payty,
+  @Semantics.amount.currencyCode: 'Currency'
+  ordamt as Ordamt,
+  @Consumption.valueHelpDefinition: [ {
+    entity.name: 'I_CurrencyStdVH', 
+    entity.element: 'Currency', 
+    useForValidation: true
+  } ]
+  currency as Currency,
+  name as Name,
+  address as Address,
+  email as Email,
+  @Semantics.user.createdBy: true
+  local_created_by as LocalCreatedBy,
+  @Semantics.systemDateTime.createdAt: true
+  local_created_at as LocalCreatedAt,
+  @Semantics.user.localInstanceLastChangedBy: true
+  local_last_changed_by as LocalLastChangedBy,
+  @Semantics.systemDateTime.localInstanceLastChangedAt: true
+  local_last_changed_at as LocalLastChangedAt,
+  @Semantics.systemDateTime.lastChangedAt: true
+  last_changed_at as LastChangedAt
+}
